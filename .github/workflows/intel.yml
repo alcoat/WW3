@@ -14,11 +14,11 @@ concurrency:
 # Set I_MPI_CC/F90 so Intel MPI wrapper uses icc/ifort instead of gcc/gfortran
 env:
   cache_key: intel10-3
-  CC: icc
-  FC: ifort
-  CXX: icpc
-  I_MPI_CC: icc
-  I_MPI_F90: ifort
+  CC: icc -fgnu-extensions
+  FC: ifort -fgnu-extensions
+  CXX: icpc -fgnu-extensions
+  I_MPI_CC: icc -fgnu-extensions
+  I_MPI_F90: ifort -fgnu-extensions
 
 # Split into a dependency build step, and a WW3 build step which
 # builds multiple switches in a matrix. The setup is run once and
