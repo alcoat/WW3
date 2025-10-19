@@ -2,11 +2,11 @@ spack:
   packages:
     all:
       compiler: [intel]
+      flags:
+        cflags:  ["-fgnu-extensions"]
+        cxxflags: ["-fgnu-extensions"]
       providers:
         mpi: [intel-oneapi-mpi]
-      flags:
-        cflags:  [ "-fgnu-extensions" ]
-        cxxflags: [ "-fgnu-extensions" ]
   specs:
   - netcdf-c@4.7.4~dap
   - netcdf-fortran@4.5.3
