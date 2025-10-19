@@ -3,8 +3,8 @@ spack:
     all:
       compiler: [intel]
       flags:
-         cflags:  "-fgnu-extensions"
-         cxxflags: "-fgnu-extensions"
+         cflags:  [ "-fgnu-extensions" ]
+         cxxflags: [ "-fgnu-extensions" ]
       providers:
         mpi: [intel-oneapi-mpi]
   specs:
