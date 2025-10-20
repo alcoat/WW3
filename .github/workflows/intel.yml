@@ -14,7 +14,7 @@ concurrency:
 # Set I_MPI_CC/F90 so Intel MPI wrapper uses icc/ifort instead of gcc/gfortran
 env:
   cache_key: intel10-3
-  #CC: icc
+  CC: icc
   FC: ifort
   CXX: icpc
   I_MPI_CC: icc
@@ -59,16 +59,18 @@ jobs:
           sudo apt-get update
           sudo apt-get upgrade
           sudo apt-get install cmake
-          sudo apt-get install intel-oneapi-dev-utilities intel-oneapi-mpi intel-oneapi-mpi-devel intel-oneapi-compiler-fortran-2023.2.1 intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-2023.2.1 intel-oneapi-openmp
+          sudo apt-get install intel-oneapi-dev-utilities intel-oneapi-mpi-devel intel-oneapi-compiler-fortran-2023.2.1 intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic-2023.2.1 intel-oneapi-openmp
 
       # Build WW3 spack environment
       - name: install-dependencies-with-spack
         if: steps.cache-env.outputs.cache-hit != 'true'
         run: |
+          #sudo mv /usr/local /usr/local_mv
           # Install NetCDF, ESMF, g2, etc using Spack
           . /opt/intel/oneapi/setvars.sh
           git clone -c feature.manyFiles=true --depth=2 https://github.com/JCSDA/spack.git
           source spack/share/spack/setup-env.sh
+          #ln -s $(realpath $(which gcc)) spack/lib/spack/env/intel/gcc # spack/make bug in ESMF
           spack env create ww3-intel ww3/model/ci/spack_intel.yaml
           spack env activate ww3-intel
           #spack compiler find
