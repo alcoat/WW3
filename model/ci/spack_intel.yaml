@@ -2,14 +2,12 @@ spack:
   packages:
     all:
       compiler: [intel]
-      flags:
-        cflags:  ["-fgnu-extensions"]
-        cxxflags: ["-fgnu-extensions"]
       providers:
         mpi: [intel-oneapi-mpi]
   specs:
-  - netcdf-c@4.7.4~dap
-  - netcdf-fortran@4.5.3
+  - python@3.12
+  - netcdf-c@4.9.2~dap
+  - netcdf-fortran@4.6.1
   - bacio@2.4.1
   - g2@3.4.5
   - metis@5.1.0~shared
@@ -19,7 +17,7 @@ spack:
   - w3emc@2.9.2
   - parallelio@2.5.9+fortran~pnetcdf
   - esmf@8.4.2~debug~xerces+external-parallelio
-  - intel-oneapi-mpi %intel
+  #- intel-oneapi-mpi %intel
   view: true
   concretizer:
     unify: when_possible
