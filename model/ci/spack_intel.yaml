@@ -5,7 +5,6 @@ spack:
       providers:
         mpi: [intel-oneapi-mpi]
   specs:
-  - python@3.12
   - netcdf-c@4.9.2~dap
   - netcdf-fortran@4.6.1
   - bacio@2.4.1
@@ -17,7 +16,7 @@ spack:
   - w3emc@2.9.2
   - parallelio@2.5.9+fortran~pnetcdf
   - esmf@8.4.2~debug~xerces+external-parallelio
-  #- intel-oneapi-mpi %intel
+  - intel-oneapi-mpi %intel
   view: true
   concretizer:
     unify: when_possible
