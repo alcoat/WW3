@@ -57,6 +57,7 @@ jobs:
           echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
           sudo apt-get update
           sudo apt-get upgrade
+          sudo apt install g++-10 gcc-10
           sudo apt-get install intel-oneapi-dev-utilities intel-oneapi-mpi-devel intel-oneapi-compiler-fortran-2025.2 intel-oneapi-compiler-dpcpp-cpp-2025.2 intel-oneapi-openmp
 
       # Build WW3 spack environment
