@@ -56,6 +56,7 @@ jobs:
           sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
           echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
           sudo apt-get update
+          sudo apt-get upgrade
           sudo apt-get install intel-oneapi-dev-utilities intel-oneapi-mpi-devel intel-oneapi-compiler-fortran-2025.2 intel-oneapi-compiler-dpcpp-cpp-2025.2 intel-oneapi-openmp
 
       # Build WW3 spack environment
@@ -71,8 +72,9 @@ jobs:
           spack env create ww3-intel ww3/model/ci/spack_intel.yaml
           spack env activate ww3-intel
           spack compiler find
-          sudo apt install cmake
-          spack external find cmake
+          #sudo apt install cmake
+          #spack external find cmake
+          spack install cmake@=3
           spack config add "packages:mpi:require:'intel-oneapi-mpi'"
           spack config add "packages:all:require:['%intel']"
           spack concretize
