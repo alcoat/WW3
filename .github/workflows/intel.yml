@@ -65,15 +65,15 @@ jobs:
           sudo mv /usr/local /usr/local_mv
           # Install NetCDF, ESMF, g2, etc using Spack
           . /opt/intel/oneapi/setvars.sh
-          git clone -c feature.manyFiles=true https://github.com/JCSDA/spack.git
+          git clone -c feature.manyFiles=true --depth=2 https://github.com/JCSDA/spack.git
           source spack/share/spack/setup-env.sh
           ln -s $(realpath $(which gcc)) spack/lib/spack/env/intel/gcc # spack/make bug in ESMF
           spack env create ww3-intel ww3/model/ci/spack_intel.yaml
           spack env activate ww3-intel
           spack compiler find
           sudo apt install cmake
-          spack external find
-          spack config add "packages:mpi:require:'intel-oneapi-mpi'"
+          spack external find cmake
+          #spack config add "packages:mpi:require:'intel-oneapi-mpi'"
           spack config add "packages:all:require:['%intel']"
           spack concretize
           spack install --dirty -v --fail-fast
