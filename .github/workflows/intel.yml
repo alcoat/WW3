@@ -73,9 +73,8 @@ jobs:
           spack env create ww3-intel ww3/model/ci/spack_intel.yaml
           spack env activate ww3-intel
           spack compiler find
-          #sudo apt install cmake
-          #spack external find cmake
-          spack install cmake@=3
+          sudo apt install cmake
+          spack external find cmake
           spack config add "packages:mpi:require:'intel-oneapi-mpi'"
           spack config add "packages:all:require:['%intel']"
           spack concretize
